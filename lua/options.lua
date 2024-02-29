@@ -58,6 +58,8 @@ vim.opt.scrolloff = 10
 
 -- Set tab and indenting to more favorable defaults
 vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 
 -- vim: ts=2 sts=2 sw=2 et
