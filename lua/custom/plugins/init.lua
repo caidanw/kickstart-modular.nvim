@@ -4,5 +4,7 @@
 -- See the kickstart.nvim README for more information
 return {
   'nvim-tree/nvim-web-devicons',
-  'mbbill/undotree',
+  { 'mbbill/undotree', keys = {
+    { '<leader>u', vim.cmd.UndotreeToggle, desc = 'Toggle [U]ndotree' },
+  } },
 }
