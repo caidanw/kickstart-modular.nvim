@@ -38,6 +38,15 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+-- vim.keymap.set('n', '<leader>g', '<cmd>terminal lazygit<CR>', { desc = 'Open Lazy[G]it' })
+vim.keymap.set('n', '<leader>g', function()
+  -- vim.fn.termopen('lazygit', {})
+  vim.cmd 'edit term://lazygit'
+end, { desc = 'Open Lazy[G]it' })
+
+-- Enter terminal mode automatically
+vim.cmd 'autocmd TermOpen * startinsert'
+
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
