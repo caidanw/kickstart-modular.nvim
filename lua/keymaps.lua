@@ -1,6 +1,25 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
+-- Move visual selection
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+
+-- Keep cursor in same position when joining lines
+vim.keymap.set('n', 'J', 'mzJ`z')
+
+-- Keep cursor in vertical center when jumping around
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
+
+-- Delete selection into void register, then paste
+vim.keymap.set('x', '<leader>p', [["_dP]])
+
+-- Disable repeating last recorded register n times
+vim.keymap.set('n', 'Q', '<nop>')
+
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
