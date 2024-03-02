@@ -57,10 +57,11 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 -- Set tab and indenting to more favorable defaults
-vim.opt.tabstop = 4
+vim.opt.tabstop = 4 -- show existing tab with 4 spaces width
 vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.opt.shiftwidth = 4 -- when indenting with '>', use 4 spaces width
+vim.opt.expandtab = true -- on pressing tab, insert 4 spaces
+vim.opt.smarttab = true -- be smart when using tabs c:
 vim.opt.smartindent = true
 
 -- No line wrap
