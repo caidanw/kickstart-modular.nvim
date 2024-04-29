@@ -22,7 +22,13 @@ return {
       --  nvim-cmp does not ship with all sources by default. They are split
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-path',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-cmdline',
+
+      -- { 'tzachar/cmp-ai', dependencies = 'nvim-lua/plenary.nvim' },
+      -- { 'magicmonty/sonicpi.nvim', dependencies = { 'hrdh7th/nvim-cmp', 'kyazdani42/nvim-web-devicons' } },
 
       -- If you want to add a bunch of pre-configured snippets,
       --    you can use this plugin to help you. It even has snippets
@@ -37,6 +43,11 @@ return {
       luasnip.config.setup {}
 
       cmp.setup {
+        sources = {
+          { name = 'nvim_lsp' },
+          { name = 'luasnip' },
+          { name = 'path' },
+        },
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -57,7 +68,7 @@ return {
           -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
-          -- ['<C-y>'] = cmp.mapping.confirm { select = true },
+          ['<C-y>'] = cmp.mapping.confirm { select = true },
           ['<Tab>'] = cmp.mapping.confirm { select = true },
 
           -- Manually trigger a completion from nvim-cmp.
@@ -83,11 +94,6 @@ return {
               luasnip.jump(-1)
             end
           end, { 'i', 's' }),
-        },
-        sources = {
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' },
-          { name = 'path' },
         },
       }
     end,
