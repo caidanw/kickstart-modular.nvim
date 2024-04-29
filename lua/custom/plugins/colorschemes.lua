@@ -13,7 +13,9 @@ return {
       }
     end,
   },
-
-  'olimorris/onedarkpro.nvim',
+  { 'olimorris/onedarkpro.nvim' },
+  { 'projekt0n/github-nvim-theme' },
+  { 'rose-pine/neovim', name = 'rose-pine' },
+  { 'sainnhe/everforest' },
 }
 -- vim: ts=2 sts=2 sw=2 et
