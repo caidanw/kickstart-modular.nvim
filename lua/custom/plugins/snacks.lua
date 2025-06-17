@@ -26,7 +26,6 @@ return {
   ---@module 'snacks'
   ---@type snacks.Config
   opts = {
-    -- Fuzzy Finder (files, lsp, etc)
     picker = {},
     lazygit = {},
   },
@@ -132,6 +131,20 @@ return {
         Snacks.lazygit()
       end,
       desc = 'Open LazyGit',
+    },
+    {
+      '<leader>gl',
+      function()
+        Snacks.lazygit.log()
+      end,
+      desc = 'Open LazyGit Log View',
+    },
+    {
+      '<leader>gf',
+      function()
+        Snacks.lazygit.log_file()
+      end,
+      desc = 'Open LazyGit File View',
     },
   },
 }
