@@ -1,3 +1,5 @@
+---@module 'lazy'
+---@type LazySpec
 return {
   {
     'AlexvZyl/nordic.nvim',
@@ -20,7 +22,7 @@ return {
         palette.fg_popup_border = palette.grey5
       end,
     },
-    config = function(opts)
+    config = function(_, opts)
       require('nordic').load(opts)
     end,
   },
