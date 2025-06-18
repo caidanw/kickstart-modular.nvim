@@ -19,8 +19,8 @@ return {
       ['Y'] = { 'actions.yank_entry', mode = 'n' },
       ['gd'] = {
         function()
-          _G.oil_columns = not _G.oil_columns
-          local columns = _G.oil_columns and { 'icon', 'permissions', 'size', 'mtime' } or { 'icon' }
+          vim.g.oil_columns = not vim.g.oil_columns
+          local columns = vim.g.oil_columns and { 'icon', 'permissions', 'size', 'mtime' } or { 'icon' }
           require('oil').set_columns(columns)
         end,
         desc = 'Toggle columns',
