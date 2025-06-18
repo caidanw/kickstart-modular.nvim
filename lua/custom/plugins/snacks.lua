@@ -1,3 +1,5 @@
+---@module 'lazy'
+---@type LazySpec
 return {
   'folke/snacks.nvim',
   priority = 1000,
@@ -28,10 +30,162 @@ return {
   opts = {
     picker = {},
     lazygit = {},
+    gitbrowse = {},
+    scratch = {},
+    terminal = {},
+    zen = {},
   },
+
+  init = function()
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'OilActionsPost',
+      callback = function(event)
+        if event.data.actions.type == 'move' then
+          Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
+        end
+      end,
+    })
+
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'VeryLazy',
+      callback = function()
+        -- Create some toggle mappings
+        Snacks.toggle.option('spell', { name = 'Spelling' }):map '<leader>ts'
+        Snacks.toggle.option('wrap', { name = 'Wrap' }):map '<leader>tw'
+        Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map '<leader>tL'
+        Snacks.toggle.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map '<leader>tc'
+        Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'Dark Background' }):map '<leader>tb'
+        Snacks.toggle.line_number():map '<leader>tl'
+        Snacks.toggle.diagnostics():map '<leader>td'
+        Snacks.toggle.treesitter():map '<leader>tT'
+        Snacks.toggle.inlay_hints():map '<leader>th'
+        Snacks.toggle.indent():map '<leader>tg'
+        Snacks.toggle.dim():map '<leader>tD'
+      end,
+    })
+  end,
 
   -- See `:help snacks-pickers-sources`
   keys = {
+    -- [[ Terminal ]]
+    {
+      '<c-/>',
+      function()
+        Snacks.terminal()
+      end,
+      desc = 'Toggle Terminal',
+    },
+
+    -- [[ Zen ]]
+    {
+      '<leader>tz',
+      function()
+        Snacks.zen()
+      end,
+      desc = 'Toggle Zen Mode',
+    },
+    {
+      '<leader>tZ',
+      function()
+        Snacks.zen.zoom()
+      end,
+      desc = 'Toggle Zoom',
+    },
+
+    -- [[ Scratch ]]
+    {
+      '<leader>.',
+      function()
+        Snacks.scratch()
+      end,
+      desc = 'Toggle Scratch Buffer',
+    },
+    {
+      '<leader>bs',
+      function()
+        Snacks.scratch.select()
+      end,
+      desc = 'Select Scratch Buffer',
+    },
+
+    -- [[ Notifications ]]
+    {
+      '<leader>n',
+      function()
+        Snacks.notifier.show_history()
+      end,
+      desc = 'Notification History',
+    },
+
+    -- [[ Buffers ]]
+    {
+      '<leader>bd',
+      function()
+        Snacks.bufdelete()
+      end,
+      desc = 'Delete Buffer',
+    },
+
+    -- [[ Code ]]
+    {
+      '<leader>cR',
+      function()
+        Snacks.rename.rename_file()
+      end,
+      desc = 'Rename File',
+    },
+
+    -- [[ Git ]]
+    {
+      '<leader>gb',
+      function()
+        Snacks.picker.git_log_line()
+      end,
+      desc = 'Git Blame Line',
+    },
+    {
+      '<leader>gB',
+      function()
+        Snacks.gitbrowse()
+      end,
+      desc = 'Git Browse',
+      mode = { 'n', 'v' },
+    },
+    {
+      '<leader>gY',
+      function()
+        Snacks.gitbrowse {
+          open = function(url)
+            vim.fn.setreg('+', url)
+          end,
+          notify = false,
+        }
+      end,
+      desc = 'Git Browse (copy)',
+    },
+    {
+      '<leader>gg',
+      function()
+        Snacks.lazygit()
+      end,
+      desc = 'LazyGit',
+    },
+    {
+      '<leader>gl',
+      function()
+        Snacks.lazygit.log()
+      end,
+      desc = 'LazyGit Log View',
+    },
+    {
+      '<leader>gf',
+      function()
+        Snacks.lazygit.log_file()
+      end,
+      desc = 'LazyGit File View',
+    },
+
+    --[[ Pickers ]]
     {
       '<leader>sh',
       function()
@@ -125,27 +279,27 @@ return {
       end,
       desc = '[S]earch [N]eovim files',
     },
+
+    --[[ Misc ]]
     {
-      '<leader>gg',
+      '<leader>N',
+      desc = 'Neovim News',
       function()
-        Snacks.lazygit()
+        Snacks.win {
+          file = vim.api.nvim_get_runtime_file('doc/news.txt', false)[1],
+          width = 0.6,
+          height = 0.6,
+          wo = {
+            spell = false,
+            wrap = false,
+            signcolumn = 'yes',
+            statuscolumn = ' ',
+            conceallevel = 3,
+          },
+        }
       end,
-      desc = 'Open LazyGit',
-    },
-    {
-      '<leader>gl',
-      function()
-        Snacks.lazygit.log()
-      end,
-      desc = 'Open LazyGit Log View',
-    },
-    {
-      '<leader>gf',
-      function()
-        Snacks.lazygit.log_file()
-      end,
-      desc = 'Open LazyGit File View',
     },
   },
 }
+
 -- vim: ts=2 sts=2 sw=2 et
