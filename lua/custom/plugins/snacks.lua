@@ -55,6 +55,7 @@ return {
         Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map '<leader>tL'
         Snacks.toggle.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map '<leader>tc'
         Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'Dark Background' }):map '<leader>tb'
+        Snacks.toggle.animate():map '<leader>ta'
         Snacks.toggle.line_number():map '<leader>tl'
         Snacks.toggle.diagnostics():map '<leader>td'
         Snacks.toggle.treesitter():map '<leader>tT'
