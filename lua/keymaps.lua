@@ -42,31 +42,6 @@ vim.keymap.set('n', '<leader>cx', '<cmd>source %<CR>', { desc = 'Source current 
 vim.keymap.set('n', '<leader>cX', '<cmd>.lua<CR>', { desc = 'Execute current line as Lua' })
 vim.keymap.set('v', '<leader>cx', '<cmd>lua<CR>', { desc = 'Execute selection as Lua' })
 
-vim.keymap.set('n', '<leader>l', '<cmd>Lazy<CR>', { desc = 'Open Lazy' })
-
--- Disable repeating last recorded register n times
-vim.keymap.set('n', 'Q', '<NOP>')
-
--- Disable `q` for macro recording as default
--- Set initial state for 'q'
-vim.g.q_record_macro = false
-
--- Function to toggle 'q' functionality
-local function toggle_q_macro()
-  if vim.g.q_record_macro then
-    -- If currently set for recording macros, make 'q' do nothing
-    vim.keymap.set('n', 'q', '<NOP>', { noremap = true })
-    vim.g.q_record_macro = false
-    -- LazyVim.warn('Disabled Macro Recording', { title = 'Option' })
-  else
-    -- If currently set to do nothing, make 'q' record macros
-    vim.keymap.set('n', 'q', 'q', { noremap = true })
-    vim.g.q_record_macro = true
-    -- LazyVim.info('Enabled Macro Recording', { title = 'Option' })
-  end
-end
-
-vim.keymap.set('n', '<leader>tq', toggle_q_macro, { noremap = true, silent = true, desc = '[T]oggle Macro Recording' })
-vim.keymap.set('n', 'q', '<NOP>', { noremap = true })
+vim.keymap.set('n', '<leader>l', '<cmd>Lazy<CR>', { desc = 'Lazy' })
 
 -- vim: ts=2 sts=2 sw=2 et

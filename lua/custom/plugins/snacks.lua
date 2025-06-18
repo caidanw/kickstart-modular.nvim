@@ -61,6 +61,16 @@ return {
         Snacks.toggle.inlay_hints():map '<leader>th'
         Snacks.toggle.indent():map '<leader>tg'
         Snacks.toggle.dim():map '<leader>tD'
+
+        local MacroRecording = require 'custom.macro_recording'
+        MacroRecording.setup()
+        Snacks.toggle
+          .new({
+            name = 'Macro Recording',
+            get = MacroRecording.is_enabled,
+            set = MacroRecording.set,
+          })
+          :map '<leader>tq'
       end,
     })
   end,
