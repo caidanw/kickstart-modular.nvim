@@ -34,6 +34,7 @@ return {
     scratch = {},
     terminal = {},
     zen = {},
+    notifier = {},
   },
 
   init = function()
