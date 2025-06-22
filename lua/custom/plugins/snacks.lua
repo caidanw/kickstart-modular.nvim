@@ -199,6 +199,13 @@ return {
 
     --[[ Pickers ]]
     {
+      '<leader>e',
+      function()
+        Snacks.picker.explorer()
+      end,
+      desc = 'Snacks Explorer',
+    },
+    {
       '<leader>sh',
       function()
         Snacks.picker.help()
