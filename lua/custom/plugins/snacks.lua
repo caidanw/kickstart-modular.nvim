@@ -292,6 +292,13 @@ return {
         Snacks.picker.colorschemes()
       end,
     },
+    {
+      '<leader>fp',
+      function()
+        Snacks.picker.projects()
+      end,
+      desc = 'Projects',
+    },
 
     --[[ Misc ]]
     {
