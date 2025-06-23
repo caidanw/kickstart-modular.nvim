@@ -65,6 +65,23 @@ return {
         { '<leader>c', group = 'code', mode = { 'n', 'v' } },
         -- { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         { '<leader>g', group = 'git', mode = { 'n', 'v' } },
+        {
+          '<leader>w',
+          group = 'windows',
+          proxy = '<c-w>',
+          expand = function()
+            return require('which-key.extras').expand.win()
+          end,
+        },
+      },
+    },
+    keys = {
+      {
+        '<c-w><space>',
+        function()
+          require('which-key').show { keys = '<c-w>', loop = true }
+        end,
+        desc = 'Window Hydra Mode (which-key)',
       },
     },
   },
