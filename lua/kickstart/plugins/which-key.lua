@@ -59,29 +59,32 @@ return {
 
       -- Document existing key chains
       spec = {
-        { '<leader>b', group = 'buffer', mode = { 'n', 'v' } },
-        { '<leader>c', group = 'code', mode = { 'n', 'v' } },
-        { '<leader>g', group = 'git', mode = { 'n', 'v' } },
-        -- { '<leader>gh', group = 'hunks', mode = { 'n', 'v' } },
-        { '<leader>s', group = 'search' },
-        { '<leader>u', group = 'ui' },
-        { 'g', group = 'goto' },
-        { 'gs', group = 'surround' },
-        { 'z', group = 'fold' },
         {
-          '<leader>b',
-          group = 'buffer',
-          expand = function()
-            return require('which-key.extras').expand.buf()
-          end,
-        },
-        {
-          '<leader>w',
-          group = 'windows',
-          proxy = '<c-w>',
-          expand = function()
-            return require('which-key.extras').expand.win()
-          end,
+          mode = { 'n', 'v' },
+          { '<leader>c', group = 'code' },
+          { '<leader>f', group = 'file/find' },
+          { '<leader>g', group = 'git' },
+          -- { '<leader>gh', group = 'hunks' },
+          { '<leader>s', group = 'search' },
+          { '<leader>u', group = 'ui' },
+          { 'g', group = 'goto' },
+          { 'gs', group = 'surround' },
+          { 'z', group = 'fold' },
+          {
+            '<leader>b',
+            group = 'buffer',
+            expand = function()
+              return require('which-key.extras').expand.buf()
+            end,
+          },
+          {
+            '<leader>w',
+            group = 'windows',
+            proxy = '<c-w>',
+            expand = function()
+              return require('which-key.extras').expand.win()
+            end,
+          },
         },
       },
     },
