@@ -90,6 +90,7 @@ return {
       end,
       desc = 'Toggle Terminal',
     },
+    { '<C-/>', '<cmd>close<cr>', desc = 'Hide Terminal', mode = 't' },
 
     -- [[ Scratch ]]
     {
