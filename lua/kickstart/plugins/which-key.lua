@@ -59,12 +59,22 @@ return {
 
       -- Document existing key chains
       spec = {
-        { '<leader>s', group = 'search' },
-        { '<leader>u', group = 'ui' },
         { '<leader>b', group = 'buffer', mode = { 'n', 'v' } },
         { '<leader>c', group = 'code', mode = { 'n', 'v' } },
-        -- { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         { '<leader>g', group = 'git', mode = { 'n', 'v' } },
+        -- { '<leader>gh', group = 'hunks', mode = { 'n', 'v' } },
+        { '<leader>s', group = 'search' },
+        { '<leader>u', group = 'ui' },
+        { 'g', group = 'goto' },
+        { 'gs', group = 'surround' },
+        { 'z', group = 'fold' },
+        {
+          '<leader>b',
+          group = 'buffer',
+          expand = function()
+            return require('which-key.extras').expand.buf()
+          end,
+        },
         {
           '<leader>w',
           group = 'windows',
