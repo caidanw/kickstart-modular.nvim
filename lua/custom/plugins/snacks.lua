@@ -286,6 +286,12 @@ return {
       end,
       desc = '[S]earch [N]eovim files',
     },
+    {
+      '<leader>uC',
+      function()
+        Snacks.picker.colorschemes()
+      end,
+    },
 
     --[[ Misc ]]
     {
