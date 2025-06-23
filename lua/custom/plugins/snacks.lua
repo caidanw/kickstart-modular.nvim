@@ -51,18 +51,21 @@ return {
       pattern = 'VeryLazy',
       callback = function()
         -- Create some toggle mappings
-        Snacks.toggle.option('spell', { name = 'Spelling' }):map '<leader>ts'
-        Snacks.toggle.option('wrap', { name = 'Wrap' }):map '<leader>tw'
-        Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map '<leader>tL'
-        Snacks.toggle.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map '<leader>tc'
-        Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'Dark Background' }):map '<leader>tb'
-        Snacks.toggle.animate():map '<leader>ta'
-        Snacks.toggle.line_number():map '<leader>tl'
-        Snacks.toggle.diagnostics():map '<leader>td'
-        Snacks.toggle.treesitter():map '<leader>tT'
-        Snacks.toggle.inlay_hints():map '<leader>th'
-        Snacks.toggle.indent():map '<leader>tg'
-        Snacks.toggle.dim():map '<leader>tD'
+        Snacks.toggle.option('spell', { name = 'Spelling' }):map '<leader>us'
+        Snacks.toggle.option('wrap', { name = 'Wrap' }):map '<leader>uw'
+        Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map '<leader>uL'
+        Snacks.toggle.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map '<leader>uc'
+        Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'Dark Background' }):map '<leader>ub'
+        Snacks.toggle.animate():map '<leader>ua'
+        Snacks.toggle.line_number():map '<leader>ul'
+        Snacks.toggle.diagnostics():map '<leader>ud'
+        Snacks.toggle.treesitter():map '<leader>uT'
+        Snacks.toggle.inlay_hints():map '<leader>uh'
+        Snacks.toggle.indent():map '<leader>ug'
+        Snacks.toggle.dim():map '<leader>uD'
+        Snacks.toggle.zen():map '<leader>uz'
+        Snacks.toggle.zoom():map '<leader>uZ'
+        Snacks.toggle.scroll():map '<leader>uS'
 
         local MacroRecording = require 'custom.macro_recording'
         MacroRecording.setup()
@@ -72,7 +75,7 @@ return {
             get = MacroRecording.is_enabled,
             set = MacroRecording.set,
           })
-          :map '<leader>tq'
+          :map '<leader>uq'
       end,
     })
   end,
@@ -86,22 +89,6 @@ return {
         Snacks.terminal()
       end,
       desc = 'Toggle Terminal',
-    },
-
-    -- [[ Zen ]]
-    {
-      '<leader>tz',
-      function()
-        Snacks.zen()
-      end,
-      desc = 'Toggle Zen Mode',
-    },
-    {
-      '<leader>tZ',
-      function()
-        Snacks.zen.zoom()
-      end,
-      desc = 'Toggle Zoom',
     },
 
     -- [[ Scratch ]]
