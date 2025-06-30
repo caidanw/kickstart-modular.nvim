@@ -26,4 +26,8 @@ return {
       require('nordic').load(opts)
     end,
   },
+  {
+    'neanias/everforest-nvim',
+    version = false,
+  },
 }
