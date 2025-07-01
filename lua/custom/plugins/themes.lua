@@ -30,4 +30,5 @@ return {
     'neanias/everforest-nvim',
     version = false,
   },
+  { 'rmehri01/onenord.nvim' },
 }
