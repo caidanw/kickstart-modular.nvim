@@ -7,9 +7,7 @@
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.hl.on_yank()
-  end,
+  callback = function() vim.hl.on_yank() end,
 })
 
 -- Ensure that the binary spl file is up-to-date with the source add file
@@ -17,7 +15,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.api.nvim_create_autocmd('FocusGained', {
   pattern = '*',
   callback = function()
-    local config_path = vim.fn.stdpath 'config' -- Get Neovim's config path
+    local config_path = vim.fn.stdpath('config') -- Get Neovim's config path
     local add_file = config_path .. '/spell/en.utf-8.add'
     local spl_file = config_path .. '/spell/en.utf-8.add.spl'
 
@@ -26,9 +24,7 @@ vim.api.nvim_create_autocmd('FocusGained', {
       local spl_mtime = vim.fn.getftime(spl_file) -- Get modification time of .add.spl file
 
       -- Run mkspell! only if .add is newer than .add.spl or .add.spl doesn't exist
-      if add_mtime > spl_mtime or spl_mtime == -1 then
-        vim.cmd('silent! mkspell! ' .. spl_file .. ' ' .. add_file)
-      end
+      if add_mtime > spl_mtime or spl_mtime == -1 then vim.cmd('silent! mkspell! ' .. spl_file .. ' ' .. add_file) end
     end
   end,
 })
@@ -37,9 +33,7 @@ vim.api.nvim_create_autocmd('FocusGained', {
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   group = vim.api.nvim_create_augroup('DisableLspDiagnosticsForEnv', { clear = true }),
   pattern = { '.env', '.env.*' },
-  callback = function(args)
-    vim.diagnostic.enable(false, { bufnr = args.buf })
-  end,
+  callback = function(args) vim.diagnostic.enable(false, { bufnr = args.buf }) end,
 })
 
 -- vim: ts=2 sts=2 sw=2 et

@@ -1,17 +1,13 @@
 -- Alpha Green a.k.a Hacker Mode
 -- Stolen from: https://www.reddit.com/r/neovim/comments/1lmkvgz/comment/n0886st
-vim.cmd 'hi clear'
+vim.cmd('hi clear')
 
 local bg = '#000000'
 local fg = '#00ff00'
 
 for hl_group, attrs in pairs(vim.api.nvim_get_hl(0, {})) do
-  if attrs.fg then
-    attrs.fg = fg
-  end
-  if attrs.bg then
-    attrs.bg = bg
-  end
+  if attrs.fg then attrs.fg = fg end
+  if attrs.bg then attrs.bg = bg end
   vim.api.nvim_set_hl(0, hl_group, attrs)
 end
 

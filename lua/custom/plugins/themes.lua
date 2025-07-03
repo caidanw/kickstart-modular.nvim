@@ -22,9 +22,7 @@ return {
         palette.fg_popup_border = palette.grey5
       end,
     },
-    config = function(_, opts)
-      require('nordic').load(opts)
-    end,
+    config = function(_, opts) require('nordic').load(opts) end,
   },
   {
     'neanias/everforest-nvim',
