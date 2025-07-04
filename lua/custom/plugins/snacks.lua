@@ -66,6 +66,7 @@ return {
       },
     },
     lazygit = {},
+    quickfile = {},
     gitbrowse = {},
     scratch = {},
     terminal = {
