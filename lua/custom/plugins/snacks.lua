@@ -6,6 +6,25 @@ local function term_nav(dir)
   end
 end
 
+local function setup_snacks_toggles()
+  -- Create some toggle mappings with Snacks
+  Snacks.toggle.option('spell', { name = 'Spelling' }):map('<leader>us')
+  Snacks.toggle.option('wrap', { name = 'Wrap' }):map('<leader>uw')
+  Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map('<leader>uL')
+  Snacks.toggle.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map('<leader>uc')
+  Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'Dark Background' }):map('<leader>ub')
+  Snacks.toggle.animate():map('<leader>ua')
+  Snacks.toggle.line_number():map('<leader>ul')
+  Snacks.toggle.diagnostics():map('<leader>ud')
+  Snacks.toggle.treesitter():map('<leader>uT')
+  Snacks.toggle.inlay_hints():map('<leader>uh')
+  Snacks.toggle.indent():map('<leader>ug')
+  Snacks.toggle.dim():map('<leader>uD')
+  Snacks.toggle.zen():map('<leader>uz')
+  Snacks.toggle.zoom():map('<leader>uZ')
+  Snacks.toggle.scroll():map('<leader>uS')
+end
+
 ---@module 'lazy'
 ---@type LazySpec
 return {
@@ -65,22 +84,7 @@ return {
     vim.api.nvim_create_autocmd('User', {
       pattern = 'VeryLazy',
       callback = function()
-        -- Create some toggle mappings
-        Snacks.toggle.option('spell', { name = 'Spelling' }):map('<leader>us')
-        Snacks.toggle.option('wrap', { name = 'Wrap' }):map('<leader>uw')
-        Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map('<leader>uL')
-        Snacks.toggle.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map('<leader>uc')
-        Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'Dark Background' }):map('<leader>ub')
-        Snacks.toggle.animate():map('<leader>ua')
-        Snacks.toggle.line_number():map('<leader>ul')
-        Snacks.toggle.diagnostics():map('<leader>ud')
-        Snacks.toggle.treesitter():map('<leader>uT')
-        Snacks.toggle.inlay_hints():map('<leader>uh')
-        Snacks.toggle.indent():map('<leader>ug')
-        Snacks.toggle.dim():map('<leader>uD')
-        Snacks.toggle.zen():map('<leader>uz')
-        Snacks.toggle.zoom():map('<leader>uZ')
-        Snacks.toggle.scroll():map('<leader>uS')
+        setup_snacks_toggles()
 
         local MacroRecording = require('custom.macro_recording')
         MacroRecording.setup()
