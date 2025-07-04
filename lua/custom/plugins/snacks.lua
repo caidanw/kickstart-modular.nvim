@@ -114,6 +114,7 @@ return {
 
     -- [[ Buffers ]]
     { '<leader>bd', function() Snacks.bufdelete() end, desc = 'Delete Buffer' },
+    { '<leader>bo', function() Snacks.bufdelete.other() end, desc = 'Delete Other Buffers' },
 
     -- [[ Code ]]
     { '<leader>cR', function() Snacks.rename.rename_file() end, desc = 'Rename File' },
