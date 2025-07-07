@@ -39,6 +39,7 @@ vim.api.nvim_create_autocmd('VimResized', {
 -- Ensure that the binary spl file is up-to-date with the source add file
 -- Source: https://www.lorenzobettini.it/2025/01/automatically-regenerating-neovim-spell-files/
 vim.api.nvim_create_autocmd('FocusGained', {
+  group = augroup('spell-file-update'),
   pattern = '*',
   callback = function()
     local config_path = vim.fn.stdpath('config') -- Get Neovim's config path
