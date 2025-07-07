@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd('FocusGained', {
 
 -- Create an autocommand to disable LSP diagnostics for .env and *.env.* files
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-  group = vim.api.nvim_create_augroup('DisableLspDiagnosticsForEnv', { clear = true }),
+  group = augroup('disable-lsp-diagnostics-for-env'),
   pattern = { '.env', '.env.*' },
   callback = function(args)
     vim.diagnostic.enable(false, { bufnr = args.buf })
