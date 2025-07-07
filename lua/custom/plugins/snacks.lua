@@ -2,7 +2,9 @@
 local function term_nav(dir)
   ---@param self snacks.terminal
   return function(self)
-    return self:is_floating() and '<c-' .. dir .. '>' or vim.schedule(function() vim.cmd.wincmd(dir) end)
+    return self:is_floating() and '<c-' .. dir .. '>' or vim.schedule(function()
+      vim.cmd.wincmd(dir)
+    end)
   end
 end
 
@@ -87,7 +89,9 @@ return {
     vim.api.nvim_create_autocmd('User', {
       pattern = 'OilActionsPost',
       callback = function(event)
-        if event.data.actions.type == 'move' then Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url) end
+        if event.data.actions.type == 'move' then
+          Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
+        end
       end,
     })
 
@@ -110,6 +114,7 @@ return {
   end,
 
   -- See `:help snacks-pickers-sources`
+  -- stylua: ignore
   keys = {
     -- [[ Terminal ]]
     { '<c-/>', function() Snacks.terminal() end, desc = 'Toggle Terminal' },
@@ -181,5 +186,3 @@ return {
     },
   },
 }
-
--- vim: ts=2 sts=2 sw=2 et
