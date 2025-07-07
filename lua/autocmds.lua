@@ -26,6 +26,16 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
   end,
 })
 
+-- resize splits if window got resized
+vim.api.nvim_create_autocmd('VimResized', {
+  group = augroup('resize-splits'),
+  callback = function()
+    local current_tab = vim.fn.tabpagenr()
+    vim.cmd('tabdo wincmd =')
+    vim.cmd('tabnext ' .. current_tab)
+  end,
+})
+
 -- Ensure that the binary spl file is up-to-date with the source add file
 -- Source: https://www.lorenzobettini.it/2025/01/automatically-regenerating-neovim-spell-files/
 vim.api.nvim_create_autocmd('FocusGained', {
