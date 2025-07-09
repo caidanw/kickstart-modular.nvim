@@ -74,7 +74,7 @@ return {
     picker = {},
     quickfile = {},
     scratch = {},
-    statuscolumn = {},
+    scroll = {},
     terminal = {
       win = {
         keys = {
@@ -128,7 +128,6 @@ return {
     })
   end,
 
-  -- See `:help snacks-pickers-sources`
   -- stylua: ignore
   keys = {
     -- [[ Terminal ]]
@@ -148,39 +147,44 @@ return {
 
     -- [[ Code ]]
     { '<leader>cR', function() Snacks.rename.rename_file() end, desc = 'Rename File' },
-    { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
-    { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
+    { ']]',         function() Snacks.words.jump(vim.v.count1) end, desc = 'Next Reference', mode = { 'n', 't' } },
+    { '[[',         function() Snacks.words.jump(-vim.v.count1) end, desc = 'Prev Reference', mode = { 'n', 't' } },
 
     -- [[ Git ]]
     { '<leader>gb', function() Snacks.picker.git_log_line() end, desc = 'Git Blame Line' },
     { '<leader>gB', function() Snacks.gitbrowse() end, desc = 'Git Browse', mode = { 'n', 'v' } },
-    {
-      '<leader>gY',
-      function()
-        Snacks.gitbrowse({ open = function(url) vim.fn.setreg('+', url) end, notify = false })
-      end,
-      desc = 'Git Browse (copy)',
-    },
+    { '<leader>gY', function() Snacks.gitbrowse({ open = function(url) vim.fn.setreg('+', url) end, notify = false }) end, desc = 'Git Browse (copy)' },
     { '<leader>gg', function() Snacks.lazygit() end, desc = 'LazyGit' },
     { '<leader>gl', function() Snacks.lazygit.log() end, desc = 'LazyGit Log View' },
     { '<leader>gf', function() Snacks.lazygit.log_file() end, desc = 'LazyGit File View' },
 
     --[[ Pickers ]]
+    -- See `:help snacks-pickers-sources`
+    -- top pickers & explorer
     { '<leader><leader>', function() Snacks.picker.buffers() end, desc = 'Find existing buffers' },
-    { '<leader>/', function() Snacks.picker.lines({}) end, desc = 'Fuzzily search in current buffer' },
+    { '<leader>/', function() Snacks.picker.lines() end, desc = 'Fuzzily search in current buffer' },
+    { '<leader>:', function() Snacks.picker.command_history() end, desc = 'Command History' },
     { '<leader>e', function() Snacks.picker.explorer() end, desc = 'Snacks Explorer' },
+    -- search
+    { '<leader>s.', function() Snacks.picker.recent() end, desc = 'Recent Files ("." for repeat)' },
+    { '<leader>sc', function() Snacks.picker.commands() end, desc = 'Commands' },
+    { '<leader>sd', function() Snacks.picker.diagnostics() end, desc = 'Diagnostics' },
+    { '<leader>sf', function() Snacks.picker.smart() end, desc = 'Files' },
+    { '<leader>sg', function() Snacks.picker.grep() end, desc = 'Grep' },
     { '<leader>sh', function() Snacks.picker.help() end, desc = 'Help' },
     { '<leader>sk', function() Snacks.picker.keymaps() end, desc = 'Keymaps' },
-    { '<leader>sf', function() Snacks.picker.smart() end, desc = 'Files' },
+    { '<leader>sn', function() Snacks.picker.files({ cwd = vim.fn.stdpath('config') }) end, desc = 'Neovim Files' },
+    { '<leader>sr', function() Snacks.picker.resume() end, desc = 'Resume' },
     { '<leader>ss', function() Snacks.picker.pickers() end, desc = 'Snacks Pickers' },
     { '<leader>sw', function() Snacks.picker.grep_word() end, desc = 'Current Word', mode = { 'n', 'x' } },
-    { '<leader>sg', function() Snacks.picker.grep() end, desc = 'Grep' },
-    { '<leader>sd', function() Snacks.picker.diagnostics() end, desc = 'Diagnostics' },
-    { '<leader>sr', function() Snacks.picker.resume() end, desc = 'Resume' },
-    { '<leader>s.', function() Snacks.picker.recent() end, desc = 'Recent Files ("." for repeat)' },
-    { '<leader>sn', function() Snacks.picker.files({ cwd = vim.fn.stdpath('config') }) end, desc = 'Neovim Files' },
-    { '<leader>fp', function() Snacks.picker.projects() end, desc = 'Projects' },
     { '<leader>uC', function() Snacks.picker.colorschemes() end, desc = 'Colorscheme with Preview' },
+    -- find
+    { '<leader>fb', function() Snacks.picker.buffers() end, desc = 'Buffers' },
+    { '<leader>ff', function() Snacks.picker.files() end, desc = 'Files' },
+    { '<leader>fg', function() Snacks.picker.git_files() end, desc = 'Git Files' },
+    { '<leader>fn', function() Snacks.picker.files({ cwd = vim.fn.stdpath('config') }) end, desc = 'Neovim Files' },
+    { '<leader>fp', function() Snacks.picker.projects() end, desc = 'Projects' },
+    { '<leader>fr', function() Snacks.picker.recent() end, desc = 'Recent' },
 
     --[[ Misc ]]
     {
