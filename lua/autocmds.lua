@@ -102,6 +102,46 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+-- Adjust help window to specific location and size
+vim.api.nvim_create_autocmd('FileType', {
+  group = augroup('adjust_help_window'),
+  pattern = 'help',
+  callback = function(event)
+    -- Configurable options
+    local window_padding = 1
+    local default_window_width = 80
+    local max_lines_to_parse = 20000
+
+    vim.wo.wrap = false
+    vim.wo.signcolumn = 'no' -- No sign column
+    vim.wo.statuscolumn = string.rep(' ', window_padding) -- Set space for padding
+
+    vim.cmd('wincmd L') -- Move window to far right
+
+    -- Resize to content width (with extra column for padding)
+    vim.defer_fn(function()
+      -- Calculate the end line number and enforce the max lines to parse
+      local total_lines = vim.fn.line('$')
+      local end_line = total_lines <= max_lines_to_parse and '$' or max_lines_to_parse
+
+      -- Get all lines that match the heading pattern (repeated = or -)
+      local matches = vim.fn.matchbufline(event.buf, '^[=-]\\+', 1, end_line)
+
+      -- Find the max width of all headings
+      local max_heading_width = 0
+      for _, match in ipairs(matches) do
+        max_heading_width = math.max(max_heading_width, vim.fn.strdisplaywidth(match.text))
+      end
+
+      -- Fallback to default width if no heading matches
+      local width = max_heading_width > 0 and max_heading_width or default_window_width
+
+      -- Resize the window with padding (double it to account for statuscolumn padding)
+      vim.cmd('vertical resize ' .. width + window_padding * 2)
+    end, 50)
+  end,
+})
+
 -- Make it easier to close man-files when opened inline
 vim.api.nvim_create_autocmd('FileType', {
   group = augroup('man_unlisted'),
