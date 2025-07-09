@@ -8,8 +8,8 @@ local function term_nav(dir)
   end
 end
 
+-- Create some toggle mappings with Snacks
 local function setup_snacks_toggles()
-  -- Create some toggle mappings with Snacks
   Snacks.toggle.option('spell', { name = 'Spelling' }):map('<leader>us')
   Snacks.toggle.option('wrap', { name = 'Wrap' }):map('<leader>uw')
   Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map('<leader>uL')
@@ -58,7 +58,6 @@ return {
   ---@module 'snacks'
   ---@type snacks.Config
   opts = {
-    picker = {},
     dashboard = {
       sections = {
         { section = 'header' },
@@ -68,10 +67,14 @@ return {
         { section = 'startup' },
       },
     },
-    lazygit = {},
-    quickfile = {},
+    dim = {},
     gitbrowse = {},
+    lazygit = {},
+    notifier = {},
+    picker = {},
+    quickfile = {},
     scratch = {},
+    statuscolumn = {},
     terminal = {
       win = {
         keys = {
@@ -83,7 +86,6 @@ return {
       },
     },
     zen = {},
-    notifier = {},
   },
 
   init = function()
@@ -99,8 +101,19 @@ return {
     vim.api.nvim_create_autocmd('User', {
       pattern = 'VeryLazy',
       callback = function()
+        -- Setup some globals for debugging (lazy-loaded)
+        _G.dd = function(...)
+          Snacks.debug.inspect(...)
+        end
+        _G.bt = function()
+          Snacks.debug.backtrace()
+        end
+        vim.print = _G.dd -- Override print to use snacks for `:=` command
+
+        -- Create some toggle mappings
         setup_snacks_toggles()
 
+        -- Create toggle mapping for custom macro recording keymaps
         local MacroRecording = require('custom.macro_recording')
         MacroRecording.setup()
         Snacks.toggle
@@ -122,7 +135,7 @@ return {
     { '<C-/>', '<cmd>close<cr>', desc = 'Hide Terminal', mode = 't' },
 
     -- [[ Scratch ]]
-    { '<leader>.', function() Snacks.scratch() end, desc = 'Toggle Scratch Buffer' },
+    { '<leader>.',  function() Snacks.scratch() end, desc = 'Toggle Scratch Buffer' },
     { '<leader>bs', function() Snacks.scratch.select() end, desc = 'Select Scratch Buffer' },
 
     -- [[ Notifications ]]
