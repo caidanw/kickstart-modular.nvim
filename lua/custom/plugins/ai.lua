@@ -59,6 +59,27 @@ return {
           },
         },
       },
+      strategies = {
+        chat = {
+          keymaps = {
+            close = {
+              modes = {},
+              index = 4,
+              callback = 'keymaps.close',
+              description = 'Close Chat',
+            },
+            stop = {
+              modes = {
+                n = '<C-c>',
+                i = '<C-c>',
+              },
+              index = 5,
+              callback = 'keymaps.stop',
+              description = 'Stop Request',
+            },
+          },
+        },
+      },
       extensions = {
         mcphub = {
           callback = 'mcphub.extensions.codecompanion',
@@ -115,6 +136,7 @@ Output only the commit message without any explanations and follow-up suggestion
     },
     keys = {
       { '<leader>aa', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle Chat' },
+      { 'q', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle Chat', ft = 'codecompanion' },
       { '<leader>ap', '<cmd>CodeCompanionActions<cr>', desc = 'Action Palette' },
       { '<leader>ac', '<cmd>CodeCompanion /commit<cr>', desc = 'Prompt: commit' },
     },
