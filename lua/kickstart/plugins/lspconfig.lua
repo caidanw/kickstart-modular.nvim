@@ -80,6 +80,9 @@ return {
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
 
+          -- Show the floating diagnostics for the line under your cursor.
+          map('<leader>cd', vim.diagnostic.open_float, 'Show Diagnostics')
+
           -- Find references for the word under your cursor.
           -- map('grr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
           -- if you want to use the snacks picker instead, you need to uncomment the lines below the keymaps, and remove the ones referencing telescope.
