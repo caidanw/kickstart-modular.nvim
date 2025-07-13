@@ -49,6 +49,16 @@ return {
       'ravitemer/mcphub.nvim',
     },
     opts = {
+      display = {
+        action_palette = {
+          prompt = 'Prompt ', -- Prompt used for interactive LLM calls
+          provider = 'snacks',
+          opts = {
+            show_default_actions = true, -- Show the default actions in the action palette?
+            show_default_prompt_library = true, -- Show the default prompt library in the action palette?
+          },
+        },
+      },
       extensions = {
         mcphub = {
           callback = 'mcphub.extensions.codecompanion',
