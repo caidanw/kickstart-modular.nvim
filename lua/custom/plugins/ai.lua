@@ -69,6 +69,49 @@ return {
           },
         },
       },
+      prompt_library = {
+        ['Generate a Commit Message'] = {
+          strategy = 'chat',
+          description = 'Generate a commit message',
+          opts = {
+            index = 10,
+            is_default = true,
+            is_slash_cmd = true,
+            short_name = 'commit',
+            auto_submit = true,
+          },
+          prompts = {
+            {
+              role = 'user',
+              content = function()
+                return string.format(
+                  [[You are an expert at following the Conventional Commit specification.
+Given the git diff listed below, please generate a commit message for me.
+Use the @{cmd_runner} tool to git commit the **staged** changes after generating the message.
+
+```diff
+%s
+```
+
+When unsure about the module names to use in the commit message, you can refer to the last 20 commit messages in this repository:
+
+```
+%s
+```
+
+Output only the commit message without any explanations and follow-up suggestions.
+]],
+                  vim.fn.system('git diff --no-ext-diff --staged'),
+                  vim.fn.system('git log --pretty=format:"%s" -n 20')
+                )
+              end,
+              opts = {
+                contains_code = true,
+              },
+            },
+          },
+        },
+      },
     },
     keys = {
       { '<leader>aa', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle Chat' },
