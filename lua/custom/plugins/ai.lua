@@ -86,9 +86,9 @@ return {
               content = function()
                 return string.format(
                   [[You are an expert at following the Conventional Commit specification.
-Given the git diff listed below, please generate a commit message for me.
 Use the @{cmd_runner} tool to git commit the **staged** changes after generating the message.
 
+Given the git diff listed below, please generate a commit message for me:
 ```diff
 %s
 ```
