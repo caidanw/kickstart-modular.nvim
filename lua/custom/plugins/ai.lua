@@ -46,12 +46,24 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
+      'ravitemer/mcphub.nvim',
+    },
+    opts = {
+      extensions = {
+        mcphub = {
+          callback = 'mcphub.extensions.codecompanion',
+          opts = {
+            make_vars = true,
+            make_slash_commands = true,
+            show_result_in_chat = true,
+          },
+        },
+      },
     },
     keys = {
       { '<leader>aa', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle Chat' },
       { '<leader>ap', '<cmd>CodeCompanionActions<cr>', desc = 'Action Palette' },
       { '<leader>ac', '<cmd>CodeCompanion /commit<cr>', desc = 'Prompt: commit' },
     },
-    opts = {},
   },
 }
