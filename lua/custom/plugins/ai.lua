@@ -47,6 +47,11 @@ return {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
     },
+    keys = {
+      { '<leader>aa', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle Chat' },
+      { '<leader>ap', '<cmd>CodeCompanionActions<cr>', desc = 'Action Palette' },
+      { '<leader>ac', '<cmd>CodeCompanion /commit<cr>', desc = 'Prompt: commit' },
+    },
     opts = {},
   },
 }
