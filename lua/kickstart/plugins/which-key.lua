@@ -62,6 +62,7 @@ return {
       spec = {
         {
           mode = { 'n', 'v' },
+          { '<leader>a', group = 'ai' },
           { '<leader>c', group = 'code' },
           { '<leader>f', group = 'file/find' },
           { '<leader>g', group = 'git' },
@@ -74,13 +75,17 @@ return {
           {
             '<leader>b',
             group = 'buffer',
-            expand = function() return require('which-key.extras').expand.buf() end,
+            expand = function()
+              return require('which-key.extras').expand.buf()
+            end,
           },
           {
             '<leader>w',
             group = 'windows',
             proxy = '<c-w>',
-            expand = function() return require('which-key.extras').expand.win() end,
+            expand = function()
+              return require('which-key.extras').expand.win()
+            end,
           },
         },
       },
@@ -88,7 +93,9 @@ return {
     keys = {
       {
         '<c-w><space>',
-        function() require('which-key').show({ keys = '<c-w>', loop = true }) end,
+        function()
+          require('which-key').show({ keys = '<c-w>', loop = true })
+        end,
         desc = 'Window Hydra Mode (which-key)',
       },
     },
