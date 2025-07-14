@@ -138,7 +138,7 @@ vim.api.nvim_create_autocmd('FileType', {
 
       -- Resize the window with padding (double it to account for statuscolumn padding)
       vim.cmd('vertical resize ' .. width + window_padding * 2)
-    end, 50)
+    end, 200)
   end,
 })
 
