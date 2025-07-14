@@ -68,10 +68,19 @@ return {
       },
     },
     dim = {},
+    explorer = {},
     gitbrowse = {},
     lazygit = {},
     notifier = {},
-    picker = {},
+    picker = {
+      sources = {
+        explorer = {
+          auto_close = true,
+          hidden = true,
+          ignored = true,
+        },
+      },
+    },
     quickfile = {},
     scratch = {},
     scroll = {},
