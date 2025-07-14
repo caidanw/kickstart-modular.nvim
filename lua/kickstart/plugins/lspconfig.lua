@@ -190,6 +190,9 @@ return {
             return diagnostic_message[diagnostic.severity]
           end,
         },
+        virtual_lines = {
+          current_line = true,
+        },
       })
 
       -- LSP servers and clients are able to communicate to each other what features they support.
