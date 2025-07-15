@@ -248,14 +248,6 @@ return {
             },
           },
         },
-        jsonls = {
-          settings = {
-            json = {
-              schemas = require('schemastore').json.schemas(),
-              validate = { enable = true },
-            },
-          },
-        },
       }
 
       -- Ensure the servers and tools above are installed
