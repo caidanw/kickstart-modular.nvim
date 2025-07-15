@@ -43,5 +43,28 @@ return {
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+
+    ---@module 'treesitter-context'
+    ---@type TSContext.UserConfig
+    opts = {},
+
+    init = function()
+      local tsc = require('treesitter-context')
+      require('snacks').toggle
+        .new({
+          name = 'Treesitter Context',
+          get = tsc.enabled,
+          set = function(state)
+            if state then
+              tsc.enable()
+            else
+              tsc.disable()
+            end
+          end,
+        })
+        :map('<leader>ut')
+    end,
+  },
 }
--- vim: ts=2 sts=2 sw=2 et
