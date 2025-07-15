@@ -76,7 +76,7 @@ return {
     picker = {
       sources = {
         explorer = {
-          auto_close = true,
+          auto_close = false,
           hidden = true,
           ignored = true,
         },
