@@ -1,9 +1,14 @@
+---@module 'lazy'
+---@type LazySpec
 return {
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+    ---@module 'nvim-treesitter.configs'
+    ---@type TSConfig
+    ---@diagnostic disable-next-line: missing-fields
     opts = {
       ensure_installed = {
         'bash',
@@ -42,6 +47,52 @@ return {
     --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
+      require('nvim-treesitter.configs').setup({
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+            keymaps = {
+              ['af'] = '@function.outer',
+              ['if'] = '@function.inner',
+              ['ac'] = '@class.outer',
+              ['ic'] = '@class.inner',
+              ['aa'] = '@parameter.outer',
+              ['ia'] = '@parameter.inner',
+            },
+          },
+          move = {
+            enable = true,
+            goto_next_start = {
+              [']f'] = '@function.outer',
+              [']c'] = '@class.outer',
+              [']a'] = '@parameter.inner',
+            },
+            goto_next_end = {
+              [']F'] = '@function.outer',
+              [']C'] = '@class.outer',
+              [']A'] = '@parameter.inner',
+            },
+            goto_previous_start = {
+              ['[f'] = '@function.outer',
+              ['[c'] = '@class.outer',
+              ['[a'] = '@parameter.inner',
+            },
+            goto_previous_end = {
+              ['[F'] = '@function.outer',
+              ['[C'] = '@class.outer',
+              ['[A'] = '@parameter.inner',
+            },
+          },
+        },
+      })
+    end,
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
