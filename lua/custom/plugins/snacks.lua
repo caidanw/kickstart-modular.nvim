@@ -70,6 +70,7 @@ return {
     dim = {},
     explorer = {},
     gitbrowse = {},
+    indent = {},
     lazygit = {},
     notifier = {},
     picker = {
