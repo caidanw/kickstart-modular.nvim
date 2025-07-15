@@ -8,7 +8,7 @@ vim.o.relativenumber = true -- Enable relative line numbers, for help with jumpi
 vim.o.cursorline = true -- Show which line your cursor is on
 vim.o.scrolloff = 7 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.wrap = true -- Line wrap
-vim.o.virtualedit = 'all' -- Move cursor beyond characters
+vim.o.virtualedit = 'block' -- Move cursor beyond characters
 
 vim.o.expandtab = false -- Use tabs instead of spaces
 vim.o.shiftwidth = 4 -- Size of an indent
