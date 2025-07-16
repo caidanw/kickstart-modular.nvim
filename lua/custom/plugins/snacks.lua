@@ -96,7 +96,22 @@ return {
       },
     },
     words = {},
-    zen = {},
+    zen = {
+      toggles = {
+        dim = false,
+        git_signs = false,
+        mini_diff_signs = false,
+        diagnostics = true,
+        inlay_hints = false,
+      },
+      ---@type snacks.win.Config
+      win = {
+        backdrop = {
+          bg = string.format('#%06x', vim.api.nvim_get_hl(0, { name = 'Normal' }).bg),
+          transparent = false,
+        },
+      },
+    },
   },
 
   init = function()
