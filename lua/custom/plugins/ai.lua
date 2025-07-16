@@ -78,6 +78,64 @@ return {
               description = 'Stop Request',
             },
           },
+          tools = {
+            ['git_commit'] = {
+              description = 'Commit staged changes with a message from the LLM',
+              opts = { requires_approval = false },
+              callback = {
+                name = 'git_commit',
+                cmds = {
+                  function(self, args)
+                    local msg = args.message
+                    if not msg or msg == '' then
+                      return { status = 'error', data = 'A commit message is required.' }
+                    end
+                    msg = msg:gsub("'", "'\\''")
+                    local cmd = string.format("git diff --cached --quiet || git commit -m '%s'", msg)
+                    local result = vim.fn.system(cmd)
+                    if vim.v.shell_error == 0 then
+                      return { status = 'success', data = 'Committed: ' .. msg }
+                    else
+                      return { status = 'error', data = 'No staged changes or commit failed: ' .. result }
+                    end
+                  end,
+                },
+                schema = {
+                  type = 'function',
+                  ['function'] = {
+                    name = 'git_commit',
+                    description = 'Commit staged changes with a message',
+                    parameters = {
+                      type = 'object',
+                      properties = {
+                        message = {
+                          type = 'string',
+                          description = 'The commit message to use',
+                        },
+                      },
+                      required = { 'message' },
+                      additionalProperties = false,
+                    },
+                    strict = true,
+                  },
+                },
+                system_prompt = [[
+## Git Commit Tool (`git_commit`)
+- Commits staged changes in the current repository with a message provided by the LLM.
+- Does nothing if there are no staged changes.
+- Requires a 'message' argument.
+]],
+                output = {
+                  success = function(self, agent, cmd, stdout)
+                    agent.chat:add_tool_output(self, stdout[1] or 'Commit succeeded.')
+                  end,
+                  error = function(self, agent, cmd, stderr)
+                    agent.chat:add_tool_output(self, stderr[1] or 'No staged changes to commit or commit failed.')
+                  end,
+                },
+              },
+            },
+          },
         },
       },
       extensions = {
@@ -104,12 +162,23 @@ return {
           prompts = {
             {
               role = 'user',
+              opts = {
+                contains_code = true,
+                ignore_system_prompt = true,
+              },
+              references = {
+                {
+                  type = 'url',
+                  url = 'https://www.conventionalcommits.org/en/v1.0.0/',
+                },
+              },
               content = function()
                 return string.format(
-                  [[You are an expert at following the Conventional Commit specification.
-Use the @{cmd_runner} tool to git commit the **staged** changes after generating the message.
+                  [[
+You are an expert at following the Conventional Commit specification.
 
 Given the git diff listed below, please generate a commit message for me:
+
 ```diff
 %s
 ```
@@ -120,15 +189,13 @@ When unsure about the module names to use in the commit message, you can refer t
 %s
 ```
 
-Output only the commit message without any explanations and follow-up suggestions.
+Use the generated commit message as the message arg to call with the @{git_commit} tool to commit the staged changes.
+Do not ask for confirmation or approval, just commit the changes directly.
 ]],
                   vim.fn.system('git diff --no-ext-diff --staged'),
                   vim.fn.system('git log --pretty=format:"%s" -n 20')
                 )
               end,
-              opts = {
-                contains_code = true,
-              },
             },
           },
         },
