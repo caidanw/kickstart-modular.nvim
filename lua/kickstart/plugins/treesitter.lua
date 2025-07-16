@@ -55,18 +55,6 @@ return {
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup({
         textobjects = {
-          select = {
-            enable = true,
-            lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-            keymaps = {
-              ['af'] = '@function.outer',
-              ['if'] = '@function.inner',
-              ['ac'] = '@class.outer',
-              ['ic'] = '@class.inner',
-              ['aa'] = '@parameter.outer',
-              ['ia'] = '@parameter.inner',
-            },
-          },
           move = {
             enable = true,
             goto_next_start = {
