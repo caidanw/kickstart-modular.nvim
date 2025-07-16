@@ -36,6 +36,8 @@ vim.o.timeoutlen = 300 -- Decrease mapped sequence wait time
 vim.o.splitright = true
 vim.o.splitbelow = true
 
+vim.o.winborder = 'rounded' -- Use rounded borders for all floating windows
+
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
