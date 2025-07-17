@@ -185,12 +185,12 @@ return {
     { '[[',         function() Snacks.words.jump(-vim.v.count1) end, desc = 'Prev Reference', mode = { 'n', 't' } },
 
     -- [[ Git ]]
-    { '<leader>gb', function() Snacks.picker.git_log_line() end, desc = 'Git Blame Line' },
+    { '<leader>gb', function() Snacks.git.blame_line({ count = 20, interactive = true }) end, desc = 'Git Blame Line' },
     { '<leader>gB', function() Snacks.gitbrowse() end, desc = 'Git Browse', mode = { 'n', 'v' } },
-    { '<leader>gY', function() Snacks.gitbrowse({ open = function(url) vim.fn.setreg('+', url) end, notify = false }) end, desc = 'Git Browse (copy)' },
+    { '<leader>gY', function() Snacks.gitbrowse({ open = function(url) vim.fn.setreg('+', url); Snacks.notify("Copied Git URL") end, notify = false }) end, desc = 'Git Browse (copy)' },
     { '<leader>gg', function() Snacks.lazygit() end, desc = 'LazyGit' },
-    { '<leader>gl', function() Snacks.lazygit.log() end, desc = 'LazyGit Log View' },
-    { '<leader>gf', function() Snacks.lazygit.log_file() end, desc = 'LazyGit File View' },
+    { '<leader>gl', function() Snacks.lazygit.log() end, desc = 'LazyGit Log' },
+    { '<leader>gf', function() Snacks.lazygit.log_file() end, desc = 'LazyGit Log (Current File)' },
 
     --[[ Pickers ]]
     -- See `:help snacks-pickers-sources`
