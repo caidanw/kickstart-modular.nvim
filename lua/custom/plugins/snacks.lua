@@ -98,7 +98,7 @@ return {
     words = {},
     zen = {
       toggles = {
-        dim = false,
+        dim = true,
         git_signs = false,
         mini_diff_signs = false,
         diagnostics = true,
@@ -106,9 +106,18 @@ return {
       },
       ---@type snacks.win.Config
       win = {
+        width = 0.6,
+        min_width = 120,
+        max_width = 200,
         backdrop = {
           bg = string.format('#%06x', vim.api.nvim_get_hl(0, { name = 'Normal' }).bg),
           transparent = false,
+        },
+      },
+      zoom = {
+        ---@type snacks.win.Config
+        win = {
+          max_width = 1000,
         },
       },
     },
