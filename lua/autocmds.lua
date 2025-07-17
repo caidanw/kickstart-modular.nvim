@@ -108,7 +108,7 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = 'help',
   callback = function(event)
     -- Configurable options
-    local window_padding = 1
+    local window_padding = 3
     local default_window_width = 80
     local max_lines_to_parse = 20000
 
