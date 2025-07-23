@@ -24,7 +24,7 @@ local function setup_snacks_toggles()
   Snacks.toggle.indent():map('<leader>ug')
   Snacks.toggle.dim():map('<leader>uD')
   Snacks.toggle.zen():map('<leader>uz')
-  Snacks.toggle.zoom():map('<leader>uZ')
+  Snacks.toggle.zoom():map('<leader>uZ'):map('<leader>wm')
   Snacks.toggle.scroll():map('<leader>uS')
 end
 
