@@ -1,6 +1,6 @@
 -- register all text objects with which-key
 ---@param opts table
-local function ai_whichkey(opts, test)
+local function ai_whichkey(opts)
   local objects = {
     { ' ', desc = 'whitespace' },
     { '"', desc = '" string' },

@@ -230,6 +230,7 @@ return {
         -- ts_ls = {},
         --
 
+        ---@type vim.lsp.Config
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
