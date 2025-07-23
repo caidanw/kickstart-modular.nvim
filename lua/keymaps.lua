@@ -62,6 +62,8 @@ vim.keymap.set('n', '<leader>cx', '<cmd>source %<CR>', { desc = 'Source current 
 vim.keymap.set('n', '<leader>cX', '<cmd>.lua<CR>', { desc = 'Execute current line as Lua' })
 vim.keymap.set('v', '<leader>cx', '<cmd>lua<CR>', { desc = 'Execute selection as Lua' })
 
+-- Miscellaneous
 vim.keymap.set('n', '<leader>l', '<cmd>Lazy<CR>', { desc = 'Lazy' })
+vim.keymap.set('n', '<leader>zz', '<cmd>qa<cr>', { desc = 'Quit All' })
 
 -- vim: ts=2 sts=2 sw=2 et
