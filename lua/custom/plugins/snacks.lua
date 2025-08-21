@@ -71,7 +71,9 @@ return {
     explorer = {},
     gitbrowse = {},
     indent = {},
-    lazygit = {},
+    lazygit = {
+      interactive = true,
+    },
     notifier = {},
     picker = {
       sources = {
