@@ -51,6 +51,16 @@ return {
         css = { 'prettier' },
         scss = { 'prettier' },
       },
+      formatters = {
+        prettier = {
+          append_args = function(_, ctx)
+            if ctx.filename:match('%.ts$') or ctx.filename:match('%.tsx$') then
+              return { '--parser', 'typescript' }
+            end
+            return {}
+          end,
+        },
+      },
     },
   },
 }
