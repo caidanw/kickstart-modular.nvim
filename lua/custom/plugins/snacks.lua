@@ -80,7 +80,7 @@ return {
         explorer = {
           auto_close = false,
           hidden = true,
-          ignored = true,
+          ignored = false,
         },
       },
     },
