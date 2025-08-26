@@ -37,19 +37,19 @@ return {
         lua = { 'stylua' },
 
         -- Conform can also run multiple formatters sequentially
-        python = { 'isort', 'black' },
+        python = { 'ruff' },
 
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { 'prettierd', 'prettier', stop_after_first = true },
 
-        javascript = { 'prettierd' },
-        typescript = { 'prettierd' },
-        javascriptreact = { 'prettierd' },
-        typescriptreact = { 'prettierd' },
-        json = { 'prettierd' },
-        html = { 'prettierd' },
-        css = { 'prettierd' },
-        scss = { 'prettierd' },
+        javascript = { 'prettier' },
+        typescript = { 'prettier' },
+        javascriptreact = { 'prettier' },
+        typescriptreact = { 'prettier' },
+        json = { 'prettier' },
+        html = { 'prettier' },
+        css = { 'prettier' },
+        scss = { 'prettier' },
       },
     },
   },
