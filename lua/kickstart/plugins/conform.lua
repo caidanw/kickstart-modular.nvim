@@ -43,8 +43,8 @@ return {
         -- javascript = { 'prettierd', 'prettier', stop_after_first = true },
 
         javascript = { 'prettier' },
-        typescript = { 'prettier' },
         javascriptreact = { 'prettier' },
+        typescript = { 'prettier' },
         typescriptreact = { 'prettier' },
         json = { 'prettier' },
         html = { 'prettier' },
@@ -53,12 +53,24 @@ return {
       },
       formatters = {
         prettier = {
-          append_args = function(_, ctx)
-            if ctx.filename:match('%.ts$') or ctx.filename:match('%.tsx$') then
-              return { '--parser', 'typescript' }
-            end
-            return {}
-          end,
+          options = {
+            ft_parsers = {
+              javascript = 'babel',
+              javascriptreact = 'babel',
+              typescript = 'typescript',
+              typescriptreact = 'typescript',
+              html = 'html',
+              css = 'css',
+              scss = 'scss',
+              less = 'less',
+              json = 'json',
+              jsonc = 'jsonc',
+              yaml = 'yaml',
+              markdown = 'markdown',
+              ['markdown.mdx'] = 'mdx',
+              graphql = 'graphql',
+            },
+          },
         },
       },
     },
