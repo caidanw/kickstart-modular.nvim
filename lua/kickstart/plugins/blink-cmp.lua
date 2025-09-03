@@ -3,30 +3,10 @@ return {
     'saghen/blink.cmp',
     -- Use a release tag to download pre-built binaries
     version = '1.*',
-    
+
     -- Primary dependency for snippets
     dependencies = {
       'rafamadriz/friendly-snippets',
-      
-      -- Optional: Advanced snippet engine for power users
-      -- Uncomment if you want LuaSnip features like choice nodes
-      -- {
-      --   'L3MON4D3/LuaSnip',
-      --   version = '2.*',
-      --   build = (function()
-      --     -- Build Step is needed for regex support in snippets.
-      --     -- This step is not supported in many windows environments.
-      --     -- Remove the below condition to re-enable on windows.
-      --     if vim.fn.has('win32') == 1 or vim.fn.executable('make') == 0 then
-      --       return
-      --     end
-      --     return 'make install_jsregexp'
-      --   end)(),
-      --   config = function()
-      --     require('luasnip.loaders.from_vscode').lazy_load()
-      --   end,
-      -- },
-      
       'folke/lazydev.nvim',
     },
 
@@ -91,7 +71,7 @@ return {
       -- Shows a signature help window while you type arguments for a function
       signature = { enabled = true },
     },
-    
+
     -- Extend the default sources list elsewhere in your config
     opts_extend = { 'sources.default' },
   },
