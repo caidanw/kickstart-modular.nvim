@@ -214,7 +214,7 @@ return {
     { '<leader>ss', function() Snacks.picker.pickers() end, desc = 'Snacks Pickers' },
     { '<leader>sw', function() Snacks.picker.grep_word() end, desc = 'Current Word', mode = { 'n', 'x' } },
     { '<leader>uC', function() Snacks.picker.colorschemes() end, desc = 'Colorscheme with Preview' },
-    -- find
+    -- files/find
     { '<leader>fb', function() Snacks.picker.buffers() end, desc = 'Buffers' },
     { '<leader>ff', function() Snacks.picker.files() end, desc = 'Files' },
     { '<leader>fg', function() Snacks.picker.git_files() end, desc = 'Git Files' },
