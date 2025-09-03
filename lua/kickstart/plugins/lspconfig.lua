@@ -214,21 +214,13 @@ return {
         capabilities = capabilities,
       })
 
-      -- Auto-enable any installed LSP servers with default config + capabilities
+      -- Auto-enable any installed LSP servers (uses vim.lsp.enable internally)
       require('mason-lspconfig').setup({
-        automatic_installation = false,
-        handlers = {
-          function(server_name)
-            -- Auto-enable any servers with default config + capabilities
-            require('lspconfig')[server_name].setup({
-              capabilities = capabilities,
-            })
-          end,
-        },
+        automatic_enable = true, -- This will call vim.lsp.enable() for all installed servers
       })
 
       -- Enable servers with explicit modular configurations (takes priority)
-      -- These will override any settings from mason-lspconfig above
+      -- These will override any settings from automatic_enable above
       vim.lsp.enable({
         'lua_ls',
         'jsonls',
