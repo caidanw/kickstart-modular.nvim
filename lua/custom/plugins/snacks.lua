@@ -187,7 +187,7 @@ return {
     { '[[',         function() Snacks.words.jump(-vim.v.count1) end, desc = 'Prev Reference', mode = { 'n', 't' } },
 
     -- [[ Git ]]
-    { '<leader>gb', function() Snacks.git.blame_line({ count = 20, interactive = true }) end, desc = 'Git Blame Line' },
+    { '<leader>gb', function() Snacks.git.blame_line({ count = 20 }) end, desc = 'Git Blame Line' },
     { '<leader>gB', function() Snacks.gitbrowse() end, desc = 'Git Browse', mode = { 'n', 'v' } },
     { '<leader>gY', function() Snacks.gitbrowse({ open = function(url) vim.fn.setreg('+', url); Snacks.notify("Copied Git URL") end, notify = false }) end, desc = 'Git Browse (copy)' },
     { '<leader>gg', function() Snacks.lazygit() end, desc = 'LazyGit' },
