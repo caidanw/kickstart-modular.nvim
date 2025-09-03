@@ -214,15 +214,17 @@ return {
         capabilities = capabilities,
       })
 
-      -- Enable Language Servers using the native vim.lsp workflow
-      -- Server-specific configurations are in lsp/ directory
-      vim.lsp.enable({
+      -- Servers with explicit modular configurations in lsp/ directory
+      local explicit_servers = {
         'lua_ls',
         'jsonls',
         'css_variables',
-        'cssls',
+        'cssls', 
         'ts_ls',
-      })
+      }
+
+      -- Enable our explicitly configured servers using native vim.lsp workflow
+      vim.lsp.enable(explicit_servers)
 
       -- Ensure LSP servers and tools are installed via Mason
       require('mason-tool-installer').setup({
@@ -236,6 +238,26 @@ return {
           -- Formatters and other tools
           'stylua', -- Used to format Lua code
           'prettier', -- Used to format JavaScript, TypeScript, HTML, CSS, etc.
+        },
+      })
+
+      -- Auto-enable any other installed LSP servers that we don't have explicit configs for
+      require('mason-lspconfig').setup({
+        automatic_installation = false,
+        handlers = {
+          function(server_name)
+            -- Skip servers we handle explicitly with vim.lsp.enable
+            for _, explicit_server in ipairs(explicit_servers) do
+              if server_name == explicit_server then
+                return
+              end
+            end
+            
+            -- Auto-enable any other servers with default config + capabilities
+            require('lspconfig')[server_name].setup({
+              capabilities = capabilities,
+            })
+          end,
         },
       })
     end,
