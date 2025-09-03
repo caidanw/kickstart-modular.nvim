@@ -1,3 +1,4 @@
+---Docs: https://github.com/neovim/nvim-lspconfig/blob/master/lsp/yamlls.lua
 ---@type vim.lsp.Config
 return {
   settings = {
