@@ -203,16 +203,8 @@ return {
         },
       })
 
-      -- LSP servers and clients are able to communicate to each other what features they support.
-      --  By default, Neovim doesn't support everything that is in the LSP specification.
-      --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
-      --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
-
-      -- Configure global LSP capabilities (shared by all servers)
-      vim.lsp.config('*', {
-        capabilities = capabilities,
-      })
+      -- On Neovim 0.11+, LSP capabilities are automatically handled
+      -- No need to manually set up blink.cmp capabilities
 
       -- Auto-enable any installed LSP servers (uses vim.lsp.enable internally)
       -- This will automatically discover and use our modular configs in lsp/ directory
