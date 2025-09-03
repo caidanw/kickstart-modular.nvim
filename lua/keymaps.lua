@@ -49,6 +49,9 @@ vim.keymap.set('n', '<leader>wd', '<C-W>c', { desc = 'Delete Window', remap = tr
 -- Buffer management
 vim.keymap.set('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
 
+-- File management
+vim.keymap.set('n', '<leader>fn', '<cmd>enew<cr>', { desc = 'New File' })
+
 -- Move Lines
 vim.keymap.set('n', '<A-j>', "<cmd>execute 'move .+' . v:count1<cr>==", { desc = 'Move Down' })
 vim.keymap.set('n', '<A-k>', "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = 'Move Up' })
