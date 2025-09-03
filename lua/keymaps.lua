@@ -69,4 +69,13 @@ vim.keymap.set('v', '<leader>cx', '<cmd>lua<CR>', { desc = 'Execute selection as
 vim.keymap.set('n', '<leader>l', '<cmd>Lazy<CR>', { desc = 'Lazy' })
 vim.keymap.set('n', '<leader>zz', '<cmd>qa<cr>', { desc = 'Quit All' })
 
+-- Delete default LSP keymaps to prevent conflicts with custom mappings in lspconfig
+vim.keymap.del('n', 'grn')
+vim.keymap.del('n', 'gra')
+vim.keymap.del('n', 'grr')
+vim.keymap.del('n', 'gri')
+vim.keymap.del('n', 'grt')
+vim.keymap.del('n', 'gO')
+vim.keymap.del('i', '<C-s>')
+
 -- vim: ts=2 sts=2 sw=2 et
