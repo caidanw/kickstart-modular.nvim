@@ -215,18 +215,9 @@ return {
       })
 
       -- Auto-enable any installed LSP servers (uses vim.lsp.enable internally)
+      -- This will automatically discover and use our modular configs in lsp/ directory
       require('mason-lspconfig').setup({
-        automatic_enable = true, -- This will call vim.lsp.enable() for all installed servers
-      })
-
-      -- Enable servers with explicit modular configurations (takes priority)
-      -- These will override any settings from automatic_enable above
-      vim.lsp.enable({
-        'lua_ls',
-        'jsonls',
-        'css_variables',
-        'cssls',
-        'ts_ls',
+        automatic_enable = true,
       })
 
       -- Ensure LSP servers and tools are installed via Mason
