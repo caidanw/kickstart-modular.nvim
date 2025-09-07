@@ -29,6 +29,8 @@ vim.o.smartcase = true
 vim.o.inccommand = 'split' -- Preview substitutions live, as you type!
 vim.o.signcolumn = 'yes' -- Keep signcolumn on by default
 
+vim.o.foldcolumn = 'auto' -- Show fold column when needed
+
 vim.o.updatetime = 250 -- Decrease update time
 vim.o.timeoutlen = 300 -- Decrease mapped sequence wait time
 
