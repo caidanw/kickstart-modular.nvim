@@ -39,6 +39,8 @@ vim.o.splitright = true
 vim.o.splitbelow = true
 
 vim.o.winborder = 'rounded' -- Use rounded borders for all floating windows
+vim.o.winblend = 0 -- Make floating windows fully opaque by default
+vim.o.pumblend = 0 -- Make popup menu fully opaque by default
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
