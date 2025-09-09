@@ -87,7 +87,9 @@ return {
 
     ---@module 'treesitter-context'
     ---@type TSContext.UserConfig
-    opts = {},
+    opts = {
+      max_lines = 5,
+    },
 
     init = function()
       local tsc = require('treesitter-context')
