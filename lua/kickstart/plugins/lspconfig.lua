@@ -62,6 +62,15 @@ return {
       -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
       -- and elegantly composed help section, `:help lsp-vs-treesitter`
 
+      local function source_code_action()
+        vim.lsp.buf.code_action({
+          context = {
+            only = { 'source' },
+            diagnostics = {},
+          },
+        })
+      end
+
       --  This function gets run when an LSP attaches to a particular buffer.
       --    That is to say, every time a new file is opened that is associated with
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -69,6 +78,8 @@ return {
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
+
           -- NOTE: Remember that Lua is a real programming language, and as such it is possible
           -- to define small helper and utility functions so you don't have to repeat yourself.
           --
@@ -82,10 +93,16 @@ return {
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
           map('<leader>cr', vim.lsp.buf.rename, 'Rename')
+          map('<leader>cR', function()
+            Snacks.rename.rename_file()
+          end, 'Rename File')
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          map('<leader>ca', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
+          map('<leader>ca', vim.lsp.buf.code_action, 'Code Action', { 'n', 'v' })
+          map('<leader>cA', source_code_action, 'Source Action', { 'n' })
+          map('<leader>cc', vim.lsp.codelens.run, 'Run Codelens', { 'n' })
+          map('<leader>cC', vim.lsp.codelens.refresh, 'Refresh & Display Codelens', { 'n' })
 
           -- Show the floating diagnostics for the line under your cursor.
           map('<leader>cd', vim.diagnostic.open_float, 'Show Diagnostics')
