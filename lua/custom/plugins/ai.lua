@@ -47,6 +47,7 @@ return {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
       'ravitemer/mcphub.nvim',
+      'franco-ruggeri/codecompanion-spinner.nvim',
     },
     opts = {
       display = {
@@ -139,6 +140,7 @@ return {
         },
       },
       extensions = {
+        spinner = {},
         mcphub = {
           callback = 'mcphub.extensions.codecompanion',
           opts = {
