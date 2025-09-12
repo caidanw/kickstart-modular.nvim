@@ -206,10 +206,11 @@ Do not ask for confirmation or approval, just commit the changes directly.
       },
     },
     keys = {
-      { '<leader>aa', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle Chat' },
+      { '<leader>aa', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle Chat', mode = { 'n', 'v' } },
       { 'q', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle Chat', ft = 'codecompanion' },
-      { '<leader>ap', '<cmd>CodeCompanionActions<cr>', desc = 'Action Palette' },
+      { '<leader>ap', '<cmd>CodeCompanionActions<cr>', desc = 'Action Palette', mode = { 'n', 'v' } },
       { '<leader>ac', '<cmd>CodeCompanion /commit<cr>', desc = 'Prompt: commit' },
+      { '<leader>as', '<cmd>CodeCompanionChat Add<cr>', desc = 'Add to Chat', mode = { 'v' } },
     },
   },
 }
