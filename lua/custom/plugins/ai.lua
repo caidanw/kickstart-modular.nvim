@@ -193,7 +193,7 @@ Use the generated commit message as the message arg to call with the @{git_commi
 Do not ask for confirmation or approval, just commit the changes directly.
 ]],
                   vim.fn.system('git diff --no-ext-diff --staged'),
-                  vim.fn.system('git log --pretty=format:"%s" -n 20')
+                  vim.fn.system('git log --pretty=format:"%s" -n 10')
                 )
               end,
             },
