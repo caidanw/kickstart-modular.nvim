@@ -48,6 +48,7 @@ return {
       'nvim-treesitter/nvim-treesitter',
       'ravitemer/mcphub.nvim',
       'franco-ruggeri/codecompanion-spinner.nvim',
+      'ravitemer/codecompanion-history.nvim',
     },
     opts = {
       display = {
@@ -150,6 +151,9 @@ return {
             make_slash_commands = true,
             show_result_in_chat = true,
           },
+        },
+        history = {
+          enabled = true,
         },
       },
       prompt_library = {
