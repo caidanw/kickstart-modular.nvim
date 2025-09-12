@@ -64,7 +64,9 @@ return {
         chat = {
           keymaps = {
             close = {
-              modes = {},
+              modes = {
+                n = 'gX',
+              },
               index = 4,
               callback = 'keymaps.close',
               description = 'Close Chat',
