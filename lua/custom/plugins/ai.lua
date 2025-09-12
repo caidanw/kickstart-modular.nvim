@@ -183,13 +183,13 @@ Given the git diff listed below, please generate a commit message for me:
 %s
 ```
 
-When unsure about the module names to use in the commit message, you can refer to the last 20 commit messages in this repository:
+When unsure about the context to use in the commit message, you can refer to the previous commit messages in this repository:
 
 ```
 %s
 ```
 
-Use the generated commit message as the message arg to call with the @{git_commit} tool to commit the staged changes.
+Use the generated commit message as the message arg to call the @{git_commit} tool to commit the staged changes.
 Do not ask for confirmation or approval, just commit the changes directly.
 ]],
                   vim.fn.system('git diff --no-ext-diff --staged'),
