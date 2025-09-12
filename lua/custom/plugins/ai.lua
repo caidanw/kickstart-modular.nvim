@@ -154,6 +154,14 @@ return {
         },
         history = {
           enabled = true,
+          opts = {
+            auto_save = false,
+            ---On exiting and entering neovim, loads the last chat on opening chat
+            continue_last_chat = true,
+            chat_filter = function(chat_data)
+              return chat_data.cwd == vim.fn.getcwd()
+            end,
+          },
         },
       },
       prompt_library = {
