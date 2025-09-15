@@ -42,6 +42,8 @@ vim.o.winborder = 'rounded' -- Use rounded borders for all floating windows
 vim.o.winblend = 0 -- Make floating windows fully opaque by default
 vim.o.pumblend = 0 -- Make popup menu fully opaque by default
 
+vim.o.sessionoptions = 'buffers,curdir,folds,help,tabpages,winsize,terminal' -- What to store in a session
+
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
