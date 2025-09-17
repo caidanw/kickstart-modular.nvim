@@ -69,6 +69,7 @@ return {
           -- { '<leader>gh', group = 'hunks' },
           { '<leader>s', group = 'search' },
           { '<leader>u', group = 'ui' },
+          { '<leader>o', group = 'opencode' },
           { 'g', group = 'goto' },
           { 'gs', group = 'surround' },
           { 'z', group = 'fold' },
