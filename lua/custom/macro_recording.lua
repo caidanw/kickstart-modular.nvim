@@ -9,7 +9,9 @@ function M.setup()
   M.set(vim.g.macro_recording or false)
 end
 
-function M.is_enabled() return M.enabled end
+function M.is_enabled()
+  return M.enabled
+end
 
 function M.enable()
   vim.keymap.set('n', 'q', 'q', { noremap = true })
@@ -31,6 +33,8 @@ function M.set(should_enable)
 end
 
 ---Toggle macro recording functionality
-function M.toggle() M.set(not M.enabled) end
+function M.toggle()
+  M.set(not M.enabled)
+end
 
 return M
