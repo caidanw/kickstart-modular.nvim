@@ -26,13 +26,14 @@ return {
         if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
           return
         end
+
         -- Disable with a global or buffer-local variable
-        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+        if not vim.g.autoformat and not vim.b[bufnr].autoformat then
           return
         end
 
         return {
-          timeout_ms = 500,
+          timeout_ms = 2000,
           lsp_format = 'fallback',
         }
       end,
@@ -80,7 +81,23 @@ return {
     init = function()
       -- If you want the formatexpr, here is the place to set it
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+
+      vim.b.autoformat = true
+      vim.g.autoformat = true
+
+      -- Commands to toggle autoformatting
+      vim.api.nvim_create_user_command('FormatDisable', function(args)
+        if args.bang then -- FormatDisable! will disable formatting just for this buffer
+          vim.b.autoformat = false
+        else
+          vim.g.autoformat = false
+        end
+      end, { desc = 'Disable autoformat on save', bang = true })
+
+      vim.api.nvim_create_user_command('FormatEnable', function()
+        vim.b.autoformat = true
+        vim.g.autoformat = true
+      end, { desc = 'Enable autoformat on save' })
     end,
   },
 }
--- vim: ts=2 sts=2 sw=2 et

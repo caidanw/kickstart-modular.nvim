@@ -159,6 +159,36 @@ return {
             set = MacroRecording.set,
           })
           :map('<leader>uq')
+
+        -- Create toggle for autoformatting buffer-local option
+        Snacks.toggle
+          .new({
+            name = 'Auto Format (Buffer)',
+            get = function()
+              if vim.b.autoformat ~= nil then
+                return vim.b.autoformat
+              end
+              return vim.g.autoformat
+            end,
+            set = function(value)
+              vim.b.autoformat = value
+            end,
+          })
+          :map('<leader>uf')
+
+        -- Create toggle for autoformatting global option
+        Snacks.toggle
+          .new({
+            name = 'Auto Format (Global)',
+            get = function()
+              return vim.g.autoformat
+            end,
+            set = function(value)
+              vim.b.autoformat = value
+              vim.g.autoformat = value
+            end,
+          })
+          :map('<leader>uF')
       end,
     })
   end,
