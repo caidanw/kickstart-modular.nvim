@@ -33,6 +33,6 @@ return {
   -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
   lazy = false,
   keys = {
-    { '<leader>o', '<CMD>Oil<CR>', mode = 'n', desc = 'Open Oil' },
+    { '<leader>fo', '<CMD>Oil<CR>', mode = 'n', desc = 'Open Oil' },
   },
 }
