@@ -12,7 +12,7 @@ return {
           require('conform').format({ async = true, lsp_format = 'fallback' })
         end,
         mode = '',
-        desc = '[F]ormat buffer',
+        desc = 'Format buffer',
       },
     },
     ---@module 'conform'
@@ -77,6 +77,10 @@ return {
         },
       },
     },
+    init = function()
+      -- If you want the formatexpr, here is the place to set it
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
   },
 }
 -- vim: ts=2 sts=2 sw=2 et
