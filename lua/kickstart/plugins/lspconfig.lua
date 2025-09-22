@@ -237,7 +237,7 @@ return {
           'jsonls',
           'css-variables-language-server', -- maps to css_variables in lspconfig
           'cssls',
-          'ts_ls',
+          'vtsls',
           -- Formatters and other tools
           'stylua', -- Used to format Lua code
           'prettier', -- Used to format JavaScript, TypeScript, HTML, CSS, etc.
