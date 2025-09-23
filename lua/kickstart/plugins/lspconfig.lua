@@ -62,12 +62,22 @@ return {
       -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
       -- and elegantly composed help section, `:help lsp-vs-treesitter`
 
-      local function source_code_action()
+      local function show_source_code_action()
         vim.lsp.buf.code_action({
           context = {
             only = { 'source' },
             diagnostics = {},
           },
+        })
+      end
+
+      local function organize_imports()
+        vim.lsp.buf.code_action({
+          context = {
+            only = { 'source.organizeImports' },
+            diagnostics = {},
+          },
+          apply = true,
         })
       end
 
@@ -100,9 +110,10 @@ return {
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, 'Code Action', { 'n', 'v' })
-          map('<leader>cA', source_code_action, 'Source Action', { 'n' })
+          map('<leader>cA', show_source_code_action, 'Source Action', { 'n' })
           map('<leader>cc', vim.lsp.codelens.run, 'Run Codelens', { 'n' })
           map('<leader>cC', vim.lsp.codelens.refresh, 'Refresh & Display Codelens', { 'n' })
+          map('<leader>co', organize_imports, 'Organize Imports', { 'n' })
 
           -- Show the floating diagnostics for the line under your cursor.
           map('<leader>cd', vim.diagnostic.open_float, 'Show Diagnostics')
