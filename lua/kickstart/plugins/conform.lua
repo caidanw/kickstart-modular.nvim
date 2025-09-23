@@ -1,3 +1,10 @@
+local function is_autoformat_enabled(bufnr)
+  if vim.b[bufnr].autoformat ~= nil then
+    return vim.b[bufnr].autoformat
+  end
+  return vim.g.autoformat
+end
+
 ---@module 'lazy'
 ---@type LazySpec
 return {
@@ -27,8 +34,7 @@ return {
           return
         end
 
-        -- Disable with a global or buffer-local variable
-        if not vim.g.autoformat and not vim.b[bufnr].autoformat then
+        if not is_autoformat_enabled(bufnr) then
           return
         end
 
@@ -82,7 +88,6 @@ return {
       -- If you want the formatexpr, here is the place to set it
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
-      vim.b.autoformat = true
       vim.g.autoformat = true
 
       -- Commands to toggle autoformatting
