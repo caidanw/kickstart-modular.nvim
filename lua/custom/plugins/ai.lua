@@ -8,23 +8,26 @@ return {
     },
     cmd = 'Copilot',
     event = 'InsertEnter',
-    config = function()
-      require('copilot').setup({
-        suggestion = {
-          enabled = true,
-          auto_trigger = true,
-          debounce = 75,
-          keymap = {
-            accept = '<C-l>',
-            next = '<C-n>',
-            prev = '<C-p>',
-            dismiss = '<C-e>',
-          },
+    opts = {
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        hide_during_completion = true,
+        debounce = 75,
+        trigger_on_accept = true,
+        keymap = {
+          accept = '<C-l>',
+          next = '<C-n>',
+          prev = '<C-p>',
+          dismiss = '<C-e>',
         },
-        panel = {
-          enabled = false,
-        },
-      })
+      },
+      panel = {
+        enabled = false,
+      },
+    },
+    config = function(_, opts)
+      require('copilot').setup(opts)
 
       vim.api.nvim_create_autocmd('User', {
         pattern = 'BlinkCmpMenuOpen',
