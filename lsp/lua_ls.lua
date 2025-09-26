@@ -15,12 +15,17 @@ return {
           'lua/?/init.lua',
         },
       },
-      -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-      -- diagnostics = { disable = { 'missing-fields' } },
+      diagnostics = {
+        globals = { 'vim' },
+        -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+        -- disable = { 'missing-fields' },
+      },
+      -- Make the server aware of Neovim runtime files
       workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_list_runtime_paths(),
         checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME,
+        },
       },
       -- Enable hover documentation
       hover = { enable = true },
