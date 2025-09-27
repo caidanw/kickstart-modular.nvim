@@ -16,7 +16,7 @@ return {
         debounce = 75,
         trigger_on_accept = true,
         keymap = {
-          accept = '<C-l>',
+          accept = false,
           next = '<C-n>',
           prev = '<C-p>',
           dismiss = '<C-e>',
@@ -28,6 +28,11 @@ return {
     },
     config = function(_, opts)
       require('copilot').setup(opts)
+
+      -- Explicitly set this keymap to skip the pass through of <C-l> that the copilot plugin does
+      vim.keymap.set('i', '<C-l>', function()
+        require('copilot.suggestion').accept()
+      end, { silent = true })
 
       vim.api.nvim_create_autocmd('User', {
         pattern = 'BlinkCmpMenuOpen',
