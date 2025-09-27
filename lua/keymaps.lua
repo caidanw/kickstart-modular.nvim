@@ -66,7 +66,7 @@ vim.keymap.set('n', '<leader>cX', '<cmd>.lua<CR>', { desc = 'Execute current lin
 vim.keymap.set('v', '<leader>cx', '<cmd>lua<CR>', { desc = 'Execute selection as Lua' })
 
 -- Miscellaneous
-vim.keymap.set('n', '<leader>l', '<cmd>Lazy<CR>', { desc = 'Lazy' })
+vim.keymap.set('n', '<leader>L', '<cmd>Lazy<CR>', { desc = 'Lazy' })
 vim.keymap.set('n', '<leader>zz', '<cmd>qa<cr>', { desc = 'Quit All' })
 
 -- Delete default LSP keymaps to prevent conflicts with custom mappings in lspconfig
