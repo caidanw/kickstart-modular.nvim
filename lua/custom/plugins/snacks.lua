@@ -85,7 +85,11 @@ return {
     },
     quickfile = {},
     scratch = {},
-    scroll = {},
+    scroll = {
+      filter = function(bufnr)
+        return vim.bo[bufnr].buftype ~= 'terminal' and vim.bo[bufnr].filetype ~= 'blink-cmp-menu'
+      end,
+    },
     terminal = {
       win = {
         keys = {
