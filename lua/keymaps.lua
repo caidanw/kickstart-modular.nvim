@@ -60,6 +60,10 @@ vim.keymap.set('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up' })
 vim.keymap.set('v', '<A-j>', ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = 'Move Down' })
 vim.keymap.set('v', '<A-k>', ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = 'Move Up' })
 
+-- Visual mode indenting that keeps selection
+vim.keymap.set('v', '<', '<gv', { desc = 'Indent left and keep selection' })
+vim.keymap.set('v', '>', '>gv', { desc = 'Indent right and keep selection' })
+
 -- Source current file and execute lua code
 vim.keymap.set('n', '<leader>cx', '<cmd>source %<CR>', { desc = 'Source current file' })
 vim.keymap.set('n', '<leader>cX', '<cmd>.lua<CR>', { desc = 'Execute current line as Lua' })
