@@ -17,6 +17,7 @@ return {
           set = require('render-markdown').set,
         })
         :map('<leader>um')
+      require('render-markdown').set(false)
     end,
   },
 }

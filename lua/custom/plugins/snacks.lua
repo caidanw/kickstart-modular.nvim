@@ -112,7 +112,7 @@ return {
       ---@type snacks.win.Config
       win = {
         width = 0.6,
-        min_width = 120,
+        min_width = 80,
         max_width = 200,
         backdrop = {
           bg = string.format('#%06x', vim.api.nvim_get_hl(0, { name = 'Normal' }).bg),
