@@ -217,8 +217,16 @@ return {
         },
       })
 
-      -- On Neovim 0.11+, LSP capabilities are automatically handled
-      -- No need to manually set up blink.cmp capabilities
+      -- Workaround for LSP "buffer newer than edits" issue (affects Astro, Volar-based LSPs)
+      -- The issue is that these LSPs sometimes send edits with stale document versions.
+      -- See: https://github.com/neovim/neovim/issues/12970
+      local original_apply_text_document_edit = vim.lsp.util.apply_text_document_edit
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.lsp.util.apply_text_document_edit = function(text_document_edit, index, position_encoding)
+        local text_document = text_document_edit.textDocument
+        text_document.version = nil
+        return original_apply_text_document_edit(text_document_edit, index, position_encoding)
+      end
 
       -- Auto-enable any installed LSP servers (uses vim.lsp.enable internally)
       -- This will automatically discover and use our modular configs in lsp/ directory
