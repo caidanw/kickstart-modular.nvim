@@ -9,7 +9,7 @@ return {
       bold_keywords = false,
       bright_border = false,
       cursorline = {
-        theme = 'light',
+        -- theme = 'light',
         -- blend = 1.5,
       },
       telescope = {
@@ -21,8 +21,17 @@ return {
         palette.fg_float_border = palette.grey5
         palette.fg_popup_border = palette.grey5
       end,
+      on_highlight = function(highlights, palette)
+        -- Fix word highlighting under cursor (LSP references) with yellow underline
+        local yellow = palette.yellow.base
+        highlights.LspReferenceText = { underline = true, sp = yellow }
+        highlights.LspReferenceRead = { underline = true, sp = yellow }
+        highlights.LspReferenceWrite = { underline = true, sp = yellow }
+      end,
     },
-    config = function(_, opts) require('nordic').load(opts) end,
+    config = function(_, opts)
+      require('nordic').load(opts)
+    end,
   },
   {
     'neanias/everforest-nvim',
