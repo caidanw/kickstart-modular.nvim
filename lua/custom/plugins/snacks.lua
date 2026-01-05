@@ -72,6 +72,13 @@ return {
     indent = {},
     lazygit = {
       interactive = true,
+      win = {
+        bo = { filetype = 'lazygit' },
+      },
+      theme = {
+        -- Use a lighter background for selected lines
+        selectedLineBgColor = { bg = 'LazyGitSelectedLine' },
+      },
     },
     notifier = {},
     picker = {

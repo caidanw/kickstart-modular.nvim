@@ -16,17 +16,24 @@ return {
         style = 'classic',
       },
       after_palette = function(palette)
+        local U = require('nordic.utils')
+
         -- Fix the border colors from being too dark
         palette.border_fg = palette.grey5
         palette.fg_float_border = palette.grey5
         palette.fg_popup_border = palette.grey5
+
+        -- Subtle yellow-tinted background for LSP references
+        palette.lsp_reference_bg = U.blend(palette.yellow.base, palette.gray0, 0.8)
       end,
       on_highlight = function(highlights, palette)
-        -- Fix word highlighting under cursor (LSP references) with yellow underline
-        local yellow = palette.yellow.base
-        highlights.LspReferenceText = { underline = true, sp = yellow }
-        highlights.LspReferenceRead = { underline = true, sp = yellow }
-        highlights.LspReferenceWrite = { underline = true, sp = yellow }
+        -- Fix word highlighting under cursor (LSP references)
+        highlights.LspReferenceText = { underline = true, sp = palette.lsp_reference_bg }
+        highlights.LspReferenceRead = { underline = true, sp = palette.lsp_reference_bg }
+        highlights.LspReferenceWrite = { underline = true, sp = palette.lsp_reference_bg }
+
+        -- Lighter cursorline for lazygit
+        highlights.LazyGitSelectedLine = { bg = palette.gray3 }
       end,
     },
     config = function(_, opts)
