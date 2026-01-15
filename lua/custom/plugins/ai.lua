@@ -174,6 +174,7 @@ return {
       },
       prompt_library = {
         ['Git commit'] = {
+          interaction = 'chat',
           description = 'Generate and commit with custom git_commit tool',
           opts = {
             index = 10,
