@@ -41,6 +41,7 @@ vim.treesitter.query.set(
   (raw_text) @injection.content
   (#set! injection.language "typescript"))
 
+; SCSS injection for <style lang="scss">
 (style_element
   (start_tag
     (attribute
@@ -51,5 +52,20 @@ vim.treesitter.query.set(
   (#eq? @_lang_attr "lang")
   (#eq? @_lang_value "scss")
   (#set! injection.language "scss"))
+
+; Default CSS injection for <style> tags without lang attribute
+((style_element
+  (start_tag) @_no_lang
+  (raw_text) @injection.content)
+  (#not-lua-match? @_no_lang "%slang%s*=")
+  (#set! injection.language "css"))
+
+; Inline style attribute CSS injection
+((attribute
+  (attribute_name) @_attr
+  (quoted_attribute_value
+    (attribute_value) @injection.content))
+  (#eq? @_attr "style")
+  (#set! injection.language "css"))
 ]]
 )
