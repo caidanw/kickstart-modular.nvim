@@ -9,8 +9,8 @@ return {
       bold_keywords = false,
       bright_border = false,
       cursorline = {
-        -- theme = 'light',
-        -- blend = 1.5,
+        theme = 'light',
+        blend = 1.5,
       },
       telescope = {
         style = 'classic',

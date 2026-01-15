@@ -5,7 +5,7 @@
 
 vim.o.number = true -- Show line numbers by default
 vim.o.relativenumber = true -- Enable relative line numbers, for help with jumping.
-vim.o.cursorline = true -- Show which line your cursor is on
+vim.o.cursorline = false -- Show which line your cursor is on
 vim.o.scrolloff = 7 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.wrap = true -- Line wrap
 vim.o.virtualedit = 'block' -- Move cursor beyond characters
