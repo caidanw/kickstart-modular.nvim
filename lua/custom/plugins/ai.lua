@@ -173,13 +173,13 @@ return {
         },
       },
       prompt_library = {
-        ['Commit message'] = {
-          description = 'Generate a commit message',
+        ['Git commit'] = {
+          description = 'Generate and commit with custom git_commit tool',
           opts = {
             index = 10,
             is_default = true,
             is_slash_cmd = true,
-            alias = 'commit',
+            alias = 'gc',
             auto_submit = true,
           },
           prompts = {
@@ -228,7 +228,7 @@ Do not ask for confirmation or approval, just commit the changes directly.
       { '<leader>aa', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle Chat', mode = { 'n', 'v' } },
       { 'q', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle Chat', ft = 'codecompanion' },
       { '<leader>ap', '<cmd>CodeCompanionActions<cr>', desc = 'Action Palette', mode = { 'n', 'v' } },
-      { '<leader>ac', '<cmd>CodeCompanion /commit<cr>', desc = 'Prompt: commit' },
+      { '<leader>ac', '<cmd>CodeCompanion /gc<cr>', desc = 'Prompt: git commit' },
       { '<leader>as', '<cmd>CodeCompanionChat Add<cr>', desc = 'Add to Chat', mode = { 'v' } },
     },
   },
