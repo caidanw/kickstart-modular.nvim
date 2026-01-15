@@ -51,7 +51,6 @@ return {
   },
   {
     'olimorris/codecompanion.nvim',
-    version = 'v17.33.0',
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
@@ -70,7 +69,7 @@ return {
           },
         },
       },
-      strategies = {
+      interactions = {
         chat = {
           keymaps = {
             close = {
@@ -94,7 +93,7 @@ return {
           tools = {
             ['git_commit'] = {
               description = 'Commit staged changes with a message from the LLM',
-              opts = { requires_approval = false },
+              opts = { require_approval_before = false },
               callback = {
                 name = 'git_commit',
                 cmds = {
